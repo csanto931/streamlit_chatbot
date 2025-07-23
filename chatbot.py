@@ -72,8 +72,10 @@ def response_generator():
     response = ai_ask("Pretend you are a very friendly and helpful person.  Please provide a response given the provided context",
                       data=st.session_state.messages,
                       api_key="qrKWRJu2oiAUTPqB9ky3MqmzGe57KQpf")
-    return response
-    
+    for word in response.split():
+        yield word + " "
+        time.sleep(0.05)
+        
 # Streamed response emulator
 def generic_response_generator():
     response = random.choice(
