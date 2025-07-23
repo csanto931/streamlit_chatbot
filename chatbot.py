@@ -69,7 +69,7 @@ def ai_ask(prompt, data=None, temperature=0.5, max_tokens=250, model="mistral-sm
         return f"Error: {str(e)}"
 
 # Streamed response emulator
-def response_generator():
+def generic_response_generator():
     response = random.choice(
         [
             "Hello there! How can I assist you today?",
@@ -103,7 +103,7 @@ if prompt := st.chat_input("What is up?"):
     
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        response = st.write_stream(response_generator())
+        response = st.write_stream(generic_response_generator())
     
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
