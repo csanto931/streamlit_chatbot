@@ -68,6 +68,12 @@ def ai_ask(prompt, data=None, temperature=0.5, max_tokens=250, model="mistral-sm
     except Exception as e:
         return f"Error: {str(e)}"
 
+def response_generator():
+    response = ai_ask("Pretend you are a very friendly and helpful person.  Please provide a response given the provided context",
+                      data=st.session_state.messages,
+                      api_key="qrKWRJu2oiAUTPqB9ky3MqmzGe57KQpf")
+    return response
+    
 # Streamed response emulator
 def generic_response_generator():
     response = random.choice(
@@ -103,7 +109,7 @@ if prompt := st.chat_input("What is up?"):
     
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        response = st.write_stream(generic_response_generator())
+        response = st.write_stream(response_generator())
     
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
