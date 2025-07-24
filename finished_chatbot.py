@@ -89,7 +89,7 @@ def generic_response_generator():
         yield word + " "
         time.sleep(0.05)
         
-st.title("Simple chat")
+st.title("AI Chat")
 
 # Initialize chat history
 if "messages" not in st.session_state:
